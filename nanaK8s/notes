@@ -1,0 +1,25 @@
+deploy webapp that connects to mongodb with external config data (with configmap and secret)
+then make app accessible in browser
+
+create the manifets by going to k8s documentation
+search for service, deployment, configmap, secret
+
+in the webapp we need the image which is from nana docker repo
+create service in webapp yaml as well, use type nodeport to open service externally
+reference user pwd and db url ref -- as env vars!
+for external service we need to enable nodeport, and it has a specific range of port values
+
+in mongo yaml
+get mongo image frmo dockerhub
+ref user and pwd as env as well, make sure port is correct
+
+in mongo secret pass in the user and pw in base64 already
+create configmap also
+
+create configmap and secret first, because they are referenced by the other manifests
+
+kct get all
+kct logs <pod name>
+to access the cluster we use minikube
+minikube ip  #can also be kct get node -o wide
+kct get events #my mongo is crashing non-stop
